@@ -11,5 +11,6 @@ To use this code, you need to install open3d and opencv, and complie the c++ cod
 
 
 ### graph-based supervoxel segmentation
+<img width="802" alt="Screen Shot 2021-07-16 at 4 58 00 PM" src="https://user-images.githubusercontent.com/57513883/125921865-4d83ae41-262f-4d5c-b066-dc21a46b21b1.png">
 
-<img width="665" alt="Screen Shot 2021-07-16 at 4 51 40 PM" src="https://user-images.githubusercontent.com/57513883/125920980-e505fb36-b110-410a-952e-1e6f87cb1eb2.png">
+
