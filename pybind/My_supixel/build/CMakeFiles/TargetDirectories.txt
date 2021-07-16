@@ -1,0 +1,3 @@
+/boot/jxd/Ncode/MyFunc/Pybind/My_supixel/build/CMakeFiles/rebuild_cache.dir
+/boot/jxd/Ncode/MyFunc/Pybind/My_supixel/build/CMakeFiles/My_suppixel.dir
+/boot/jxd/Ncode/MyFunc/Pybind/My_supixel/build/CMakeFiles/edit_cache.dir
