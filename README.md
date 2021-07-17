@@ -4,13 +4,42 @@ Functions for Hyperspectral LiDAR processing, such as point cloud supervoxel seg
 
 To use this code, you need to install open3d and opencv, and complie the c++ codes with pybind11. We have precomplied the c++ codes under ubuntu 18.04 and MacOS Big Sur enviroment. 
 
-### HSI and LiDAR visualazation
+# usage
 
- <img width="197" alt="Screen Shot 2021-07-16 at 4 49 42 PM" src="https://user-images.githubusercontent.com/57513883/125920634-507face0-da8a-424a-a2d5-f3df3bab8e31.png">
- <img width="197" alt="Screen Shot 2021-07-16 at 4 50 28 PM" src="https://user-images.githubusercontent.com/57513883/125920773-42b3ca84-51be-4fae-b1e0-f006cd56d0dc.png">
+### LiDAR segmentation and visualazation
 
+```python
+>>import My_HSI_LiDAR as HSIL
+##generate random points
+>>pcd = HSIL.geometry.PointCloud()
+>>pcd.cube_cloud(1000,1,1,1,1.5)
 
-### graph-based supervoxel segmentation
-<img width="802" alt="Screen Shot 2021-07-16 at 4 58 00 PM" src="https://user-images.githubusercontent.com/57513883/125921865-4d83ae41-262f-4d5c-b066-dc21a46b21b1.png">
+##supervoxel seg
+>>FHSup = HSIL.segmentation.FH_supervoxel()
+>>FHSup.setCloud(pcd)
+>>FH.FindNeighbor1(50,2)
+>>FH.compute_edge()
+>>FH.graph_seg(0.6,50)
 
+##visualization
+>>sup_map = FHSup.Generate_supmap(HSIL.geometry.PointCloud()
+```
+### LiDAR to DSM
+```python
+>>import My_HSI_LiDAR as HSIL
+>>import numpy as np
+##generate random points
+>>pcd = HSIL.geometry.PointCloud()
+>>np_points = np.random.rand(100,3)
+>>pcd.points = HSIL.utility.Vector3dVector(np_points)
 
+##generate dsm
+>>CTI = HSIL.resample.CloudToImg(pcd)
+>>CTI.initializa()CTI.setGeodos(0.01)
+>>CTI.compute_idn()
+>>CTI.compute_point_in_grid()
+>>dsm = CTI.compute_dsm()
+```
+
+### LiDAR and HSI fusion
+see example.py
