@@ -45,4 +45,5 @@ Generate Digital Surface Model (DSM) from a given LiDAR point cloud
 ```
 
 ### LiDAR and HSI fusion
+Generate illumination-invariant hyperspectral point cloud. 
 see example.py
