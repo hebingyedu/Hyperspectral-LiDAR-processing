@@ -22,7 +22,7 @@ Generate supervoxels and visualize the supervoxel map.
 >>FH.graph_seg(0.6,50)
 
 ##visualization
->>sup_map = FHSup.Generate_supmap(HSIL.geometry.PointCloud()
+>>sup_map = FHSup.Generate_supmap(HSIL.geometry.PointCloud())
 ```
 ### LiDAR to DSM
 Generate Digital Surface Model (DSM) from a given LiDAR point cloud
