@@ -15,11 +15,11 @@ Generate supervoxels and visualize the supervoxel map.
 >>pcd.cube_cloud(1000,1,1,1,1.5)
 
 ##supervoxel seg
->>FHSup = HSIL.segmentation.FH_supervoxel()
+>>FHSup = HSIL.segmentation.FH_supvoxel()
 >>FHSup.setCloud(pcd)
->>FH.FindNeighbor1(50,2)
->>FH.compute_edge()
->>FH.graph_seg(0.6,50)
+>>FHSup.FindNeighbor1(50,2)
+>>FHSup.compute_edge()
+>>FHSup.graph_seg(0.6,50)
 
 ##visualization
 >>sup_map = FHSup.Generate_supmap(HSIL.geometry.PointCloud())
