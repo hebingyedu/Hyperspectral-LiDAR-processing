@@ -11,7 +11,7 @@ Generate supervoxels and visualize the supervoxel map.
 ```python
 >>import My_HSI_LiDAR as HSIL
 >>import numpy as np
-##generate random points
+##load LiDAR
 >>LiDAR = np.load("./testData/testLiDAR.npy", allow_pickle = True)
 >>cloud = HSIL.geometry.PointCloud()
 >>cloud.points = HSIL.utility.Vector3dVector(LiDAR.item()['points'])
@@ -33,19 +33,25 @@ Generate Digital Surface Model (DSM) from a given LiDAR point cloud
 ```python
 >>import My_HSI_LiDAR as HSIL
 >>import numpy as np
-##generate random points
->>pcd = HSIL.geometry.PointCloud()
->>np_points = np.random.rand(100,3)
->>pcd.points = HSIL.utility.Vector3dVector(np_points)
+##load LiDAR
+>>LiDAR = np.load("./testData/testLiDAR.npy", allow_pickle = True)
+>>cloud = HSIL.geometry.PointCloud()
+>>cloud.points = HSIL.utility.Vector3dVector(LiDAR.item()['points'])
 
 ##generate dsm
->>CTI = HSIL.resample.CloudToImg(pcd)
->>CTI.initializa()
+>>CTI = HSIL.resample.CloudToImg(cloud)
+>>CTI.initialize()
 ## Specify the resolution of DSM
->>CTI.setGeodos(0.01)
+>>CTI.setGeodis(1.)
 >>CTI.compute_idn()
 >>CTI.compute_point_in_grid()
 >>dsm = CTI.compute_dsm()
+
+##visualization
+Iutility = HSIL.Iutility.Img_utility()
+mask = np.ones(dsm.shape)
+dsm_smooth = Iutility.inpaintZ(dsm, mask, 1, 1,  -1000)
+dsm_vis = Iutility.visualizeDEM(dsm_smooth, np.min(dsm_smooth), 0.1)
 ```
 
 ### LiDAR and HSI fusion
