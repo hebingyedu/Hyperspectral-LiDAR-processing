@@ -10,14 +10,18 @@ To use this code, you need to install open3d and opencv, and complie the c++ cod
 Generate supervoxels and visualize the supervoxel map.
 ```python
 >>import My_HSI_LiDAR as HSIL
+>>import numpy as np
 ##generate random points
->>pcd = HSIL.geometry.PointCloud()
->>pcd.cube_cloud(1000,1,1,1,1.5)
+>>LiDAR = np.load("./testData/testLiDAR.npy", allow_pickle = True)
+>>cloud = HSIL.geometry.PointCloud()
+>>cloud.points = HSIL.utility.Vector3dVector(LiDAR.item()['points'])
+>>colorIII = np.asarray(LiDAR.item()['III'], np.float64)/5000
+>>cloud.colors = HSIL.utility.Vector3dVector(colorIII)
 
 ##supervoxel seg
 >>FHSup = HSIL.segmentation.FH_supvoxel()
->>FHSup.setCloud(pcd)
->>FHSup.FindNeighbor1(50,2)
+>>FHSup.setCloud(cloud)
+>>FHSup.FindNeighbor(50)
 >>FHSup.compute_edge()
 >>FHSup.graph_seg(0.6,50)
 
